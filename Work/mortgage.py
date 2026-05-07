@@ -12,13 +12,16 @@ extra_payment_end_month = 108
 extra_payment = 1000
 
 while principal > 0:
+    principal = principal * (1+rate/12)
     if extra_payment_start_month <= i <= extra_payment_end_month:
-        principal = principal * (1+rate/12) - (payment + extra_payment)
-        total_paid = total_paid + (payment + extra_payment)
+        monthly_payment = payment + extra_payment
     else:
-        principal = principal * (1+rate/12) - payment
-        total_paid = total_paid + payment
+        monthly_payment = payment
+    if monthly_payment > principal:
+        monthly_payment = principal
+    principal = principal - monthly_payment
+    total_paid = total_paid + monthly_payment
     i = i + 1
-    print(i-1, round(total_paid,2), round((principal),2))
+    print(i-1, round(total_paid,2), round(principal,2))
 
 print('Total paid', round(total_paid, 2), 'in', i-1, 'months')
