@@ -13,5 +13,5 @@ with open('Data/portfolio.csv', 'rt') as f:
         print(sum)
     print(sum)   
 
-
+ 
     
